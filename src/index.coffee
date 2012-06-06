@@ -17,7 +17,4 @@ module.exports = class EmberHandlebarsCompiler
     finally
       callback error, result
 
-  include: [
-    (sysPath.join __dirname, '..', 'vendor',
-      'ember-0.9.6.js')
-  ]
+  include: []
