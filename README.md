@@ -12,9 +12,10 @@ Pick a plugin version that corresponds to your minor (y) brunch version.
 If you want to use git version of plugin, add
 `"ember-handlebars-brunch": "git+ssh://git@github.com:saiwong/ember-handlebars-brunch.git"`.
 
-set the templates compiler in `config.coffee` 
+set the templates compiler in `config.coffee` set `precompile` to `true` if you want to enable it
 
     templates:
+      precompile: true
       defaultExtension: 'hbs'
       joinTo: 'javascripts/app.js' : /^app/
       
