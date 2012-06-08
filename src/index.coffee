@@ -12,7 +12,7 @@ module.exports = class EmberHandlebarsCompiler
 
   compile: (data, path, callback) ->
     try
-      content = compileHBS JSON.stringify(data.toString())
+      content = compileHBS data.toString()
       result = "\nEmber.TEMPLATES[module.id] = Ember.Handlebars.template(#{content});\nmodule.exports = module.id;\n"
     catch err
       error = err
