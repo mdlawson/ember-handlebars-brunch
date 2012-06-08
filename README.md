@@ -15,7 +15,7 @@ If you want to use git version of plugin, add
 set the templates compiler in `config.coffee` set `precompile` to `true` if you want to enable it
 
     templates:
-      precompile: true
+      precompile: true  # default is false
       defaultExtension: 'hbs'
       joinTo: 'javascripts/app.js' : /^app/
       
