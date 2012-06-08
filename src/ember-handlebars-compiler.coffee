@@ -4,10 +4,10 @@ module.exports = (->
   vm      = require 'vm'
   sysPath = require 'path'
 
-  handlebarsjPath = sysPath.join __dirname, '..', 'vendor', 'handlebars-1.0.0.beta.6.js'
-  emberjsPath     = sysPath.join __dirname, '..', 'vendor', 'ember.js'
+  handlebarssjPath = sysPath.join __dirname, '..', 'vendor', 'handlebars-1.0.0.beta.6.js'
+  emberjsPath      = sysPath.join __dirname, '..', 'vendor', 'ember.js'
 
-  handlebarsjs  = fs.readFileSync handlebarsjPath, 'utf8'
+  handlebarsjs  = fs.readFileSync handlebarsjsPath, 'utf8'
   emberjs       = fs.readFileSync emberjsPath, 'utf8'
 
   # dummy jQuery
