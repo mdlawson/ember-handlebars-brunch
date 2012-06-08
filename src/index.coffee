@@ -1,4 +1,6 @@
-sysPath = require 'path'
+
+sysPath     = require 'path'
+compileHBS  = require './ember-handlebars-compiler'
 
 module.exports = class EmberHandlebarsCompiler
   brunchPlugin: yes
@@ -10,11 +12,14 @@ module.exports = class EmberHandlebarsCompiler
 
   compile: (data, path, callback) ->
     try
-      content = JSON.stringify data.toString()
-      result = "Ember.TEMPLATES[module.id] = Ember.Handlebars.compile(#{content}); module.exports = module.id;"
+      content = compileHBS JSON.stringify(data.toString())
+      result = "Ember.TEMPLATES[module.id] = #{content}; module.exports = module.id;"
     catch err
       error = err
     finally
       callback error, result
 
-  include: []
+  include: [
+    sysPath.join __dirname, '..', 'vendor', 'handlebars-1.0.0.beta.6.js'
+    sysPath.join __dirname, '..', 'vendor', 'ember.js'
+  ]
