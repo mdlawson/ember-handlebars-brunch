@@ -1,3 +1,5 @@
+# https://gist.github.com/2013669
+
 module.exports = (->
 
   fs      = require 'fs'
