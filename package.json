@@ -1,14 +1,14 @@
 {
   "name": "ember-handlebars-brunch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Adds Ember Handlebars support to brunch.",
   "author": {
-    "name": "Sai Wong"
+    "name": "Sai Wong + Ilia Choly"
   },
-  "homepage": "https://github.com/saiwong/ember-handlebars-brunch",
+  "homepage": "https://github.com/icholy/ember-handlebars-brunch",
   "repository": {
     "type": "git",
-    "url": "git@github.com:saiwong/ember-handlebars-brunch.git"
+    "url": "git://github.com/icholy/ember-handlebars-brunch.git"
   },
   "main": "./lib/index",
   "scripts": {
@@ -16,7 +16,7 @@
     "test": "node setup.js test"
   },
   "engines": {
-    "node": "~0.6.10"
+    "node": "~0.6.10 || 0.8 || 0.9"
   },
   "dependencies": {
     "coffee-script": "1.2.0"
@@ -24,11 +24,5 @@
   "devDependencies": {
     "mocha": "0.12.1",
     "expect.js": "0.1.2"
-  },
-  "_id": "ember-handlebars-brunch@1.0.0",
-  "optionalDependencies": {},
-  "_engineSupported": true,
-  "_npmVersion": "1.1.12",
-  "_nodeVersion": "v0.6.14",
-  "_defaultsLoaded": true
+  }
 }
