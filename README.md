@@ -5,12 +5,7 @@ This plugin adds [Ember Handlebars](http://emberjs.com/) template pre-compiling 
 
 ## Usage
 
-Add `"ember-handlebars-brunch": "x.y.z"` to `package.json` of your brunch app.
-
-Pick a plugin version that corresponds to your minor (y) brunch version.
-
-If you want to use git version of plugin, add
-`"ember-handlebars-brunch": "git+ssh://git@github.com:saiwong/ember-handlebars-brunch.git"`.
+Add `"ember-handlebars-brunch": "git+ssh://git@github.com:icholy/ember-handlebars-brunch.git"`. to `package.json` of your brunch app.
 
 set the templates compiler in `config.coffee` set `precompile` to `true` if you want to enable it
 
