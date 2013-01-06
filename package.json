@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "mocha": "1.7.4",
-    "expect.js": "0.2.2"
+    "expect.js": "0.2.0"
   }
 }
