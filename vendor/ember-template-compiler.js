@@ -1,3 +1,10 @@
+(function() {
+var Ember = { assert: function() {} };
+// Version: v1.0.0-pre.2-290-gdf83048
+// Last commit: df83048 (2013-01-05 09:52:47 -0800)
+
+
+(function() {
 // lib/handlebars/base.js
 
 /*jshint eqnull:true*/
@@ -64,20 +71,33 @@ Handlebars.createFrame = Object.create || function(object) {
 
 Handlebars.registerHelper('each', function(context, options) {
   var fn = options.fn, inverse = options.inverse;
-  var ret = "", data;
+  var i = 0, ret = "", data;
 
   if (options.data) {
     data = Handlebars.createFrame(options.data);
   }
 
-  if(context && context.length > 0) {
-    for(var i=0, j=context.length; i<j; i++) {
-      if (data) { data.index = i; }
-      ret = ret + fn(context[i], { data: data });
+  if(context && typeof context === 'object') {
+    if(context instanceof Array){
+      for(var j = context.length; i<j; i++) {
+        if (data) { data.index = i; }
+        ret = ret + fn(context[i], { data: data });
+      }
+    } else {
+      for(var key in context) {
+        if(context.hasOwnProperty(key)) {
+          if(data) { data.key = key; }
+          ret = ret + fn(context[key], {data: data});
+          i++;
+        }
+      }
     }
-  } else {
+  }
+
+  if(i === 0){
     ret = inverse(this);
   }
+
   return ret;
 });
 
@@ -506,62 +526,66 @@ case 2:
                                    return 14;
                                  
 break;
-case 3: return 24; 
+case 3: yy_.yytext = yy_.yytext.substr(0, yy_.yyleng-4); this.popState(); return 15; 
 break;
-case 4: return 16; 
+case 4: return 24; 
 break;
-case 5: return 20; 
+case 5: return 16; 
 break;
-case 6: return 19; 
+case 6: return 20; 
 break;
 case 7: return 19; 
 break;
-case 8: return 23; 
+case 8: return 19; 
 break;
 case 9: return 23; 
 break;
-case 10: yy_.yytext = yy_.yytext.substr(3,yy_.yyleng-5); this.popState(); return 15; 
+case 10: return 23; 
 break;
-case 11: return 22; 
+case 11: this.popState(); this.begin('com'); 
 break;
-case 12: return 35; 
+case 12: yy_.yytext = yy_.yytext.substr(3,yy_.yyleng-5); this.popState(); return 15; 
 break;
-case 13: return 34; 
+case 13: return 22; 
 break;
-case 14: return 34; 
+case 14: return 35; 
 break;
-case 15: return 37; 
+case 15: return 34; 
 break;
-case 16: /*ignore whitespace*/ 
+case 16: return 34; 
 break;
-case 17: this.popState(); return 18; 
+case 17: return 37; 
 break;
-case 18: this.popState(); return 18; 
+case 18: /*ignore whitespace*/ 
 break;
-case 19: yy_.yytext = yy_.yytext.substr(1,yy_.yyleng-2).replace(/\\"/g,'"'); return 29; 
+case 19: this.popState(); return 18; 
 break;
-case 20: yy_.yytext = yy_.yytext.substr(1,yy_.yyleng-2).replace(/\\"/g,'"'); return 29; 
+case 20: this.popState(); return 18; 
 break;
-case 21: yy_.yytext = yy_.yytext.substr(1); return 27; 
+case 21: yy_.yytext = yy_.yytext.substr(1,yy_.yyleng-2).replace(/\\"/g,'"'); return 29; 
 break;
-case 22: return 31; 
+case 22: yy_.yytext = yy_.yytext.substr(1,yy_.yyleng-2).replace(/\\'/g,"'"); return 29; 
 break;
-case 23: return 31; 
+case 23: yy_.yytext = yy_.yytext.substr(1); return 27; 
 break;
-case 24: return 30; 
+case 24: return 31; 
 break;
-case 25: return 34; 
+case 25: return 31; 
 break;
-case 26: yy_.yytext = yy_.yytext.substr(1, yy_.yyleng-2); return 34; 
+case 26: return 30; 
 break;
-case 27: return 'INVALID'; 
+case 27: return 34; 
 break;
-case 28: return 5; 
+case 28: yy_.yytext = yy_.yytext.substr(1, yy_.yyleng-2); return 34; 
+break;
+case 29: return 'INVALID'; 
+break;
+case 30: return 5; 
 break;
 }
 };
-lexer.rules = [/^(?:[^\x00]*?(?=(\{\{)))/,/^(?:[^\x00]+)/,/^(?:[^\x00]{2,}?(?=(\{\{|$)))/,/^(?:\{\{>)/,/^(?:\{\{#)/,/^(?:\{\{\/)/,/^(?:\{\{\^)/,/^(?:\{\{\s*else\b)/,/^(?:\{\{\{)/,/^(?:\{\{&)/,/^(?:\{\{![\s\S]*?\}\})/,/^(?:\{\{)/,/^(?:=)/,/^(?:\.(?=[} ]))/,/^(?:\.\.)/,/^(?:[\/.])/,/^(?:\s+)/,/^(?:\}\}\})/,/^(?:\}\})/,/^(?:"(\\["]|[^"])*")/,/^(?:'(\\[']|[^'])*')/,/^(?:@[a-zA-Z]+)/,/^(?:true(?=[}\s]))/,/^(?:false(?=[}\s]))/,/^(?:[0-9]+(?=[}\s]))/,/^(?:[a-zA-Z0-9_$-]+(?=[=}\s\/.]))/,/^(?:\[[^\]]*\])/,/^(?:.)/,/^(?:$)/];
-lexer.conditions = {"mu":{"rules":[3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],"inclusive":false},"emu":{"rules":[2],"inclusive":false},"INITIAL":{"rules":[0,1,28],"inclusive":true}};
+lexer.rules = [/^(?:[^\x00]*?(?=(\{\{)))/,/^(?:[^\x00]+)/,/^(?:[^\x00]{2,}?(?=(\{\{|$)))/,/^(?:[\s\S]*?--\}\})/,/^(?:\{\{>)/,/^(?:\{\{#)/,/^(?:\{\{\/)/,/^(?:\{\{\^)/,/^(?:\{\{\s*else\b)/,/^(?:\{\{\{)/,/^(?:\{\{&)/,/^(?:\{\{!--)/,/^(?:\{\{![\s\S]*?\}\})/,/^(?:\{\{)/,/^(?:=)/,/^(?:\.(?=[} ]))/,/^(?:\.\.)/,/^(?:[\/.])/,/^(?:\s+)/,/^(?:\}\}\})/,/^(?:\}\})/,/^(?:"(\\["]|[^"])*")/,/^(?:'(\\[']|[^'])*')/,/^(?:@[a-zA-Z]+)/,/^(?:true(?=[}\s]))/,/^(?:false(?=[}\s]))/,/^(?:[0-9]+(?=[}\s]))/,/^(?:[a-zA-Z0-9_$-]+(?=[=}\s\/.]))/,/^(?:\[[^\]]*\])/,/^(?:.)/,/^(?:$)/];
+lexer.conditions = {"mu":{"rules":[4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],"inclusive":false},"emu":{"rules":[2],"inclusive":false},"com":{"rules":[3],"inclusive":false},"INITIAL":{"rules":[0,1,30],"inclusive":true}};
 return lexer;})()
 parser.lexer = lexer;
 function Parser () { this.yy = {}; }Parser.prototype = parser;parser.Parser = Parser;
@@ -1434,7 +1458,7 @@ Handlebars.JavaScriptCompiler = function() {};
       this.context.aliases.functionType = '"function"';
 
       this.replaceStack(function(current) {
-        return "typeof " + current + " === functionType ? " + current + "() : " + current;
+        return "typeof " + current + " === functionType ? " + current + ".apply(depth0) : " + current;
       });
     },
 
@@ -1579,7 +1603,7 @@ Handlebars.JavaScriptCompiler = function() {};
       var nextStack = this.nextStack();
 
       this.source.push('if (foundHelper) { ' + nextStack + ' = foundHelper.call(' + helper.callParams + '); }');
-      this.source.push('else { ' + nextStack + ' = ' + nonHelper + '; ' + nextStack + ' = typeof ' + nextStack + ' === functionType ? ' + nextStack + '() : ' + nextStack + '; }');
+      this.source.push('else { ' + nextStack + ' = ' + nonHelper + '; ' + nextStack + ' = typeof ' + nextStack + ' === functionType ? ' + nextStack + '.apply(depth0) : ' + nextStack + '; }');
     },
 
     // [invokePartial]
@@ -1918,3 +1942,184 @@ Handlebars.VM = {
 
 Handlebars.template = Handlebars.VM.template;
 ;
+
+})();
+
+(function() {
+/**
+@module ember
+@submodule ember-handlebars
+*/
+
+// Eliminate dependency on any Ember to simplify precompilation workflow
+var objectCreate = Object.create || function(parent) {
+  function F() {}
+  F.prototype = parent;
+  return new F();
+};
+
+var Handlebars = this.Handlebars || Ember.imports.Handlebars;
+Ember.assert("Ember Handlebars requires Handlebars 1.0.beta.5 or greater", Handlebars && Handlebars.VERSION.match(/^1\.0\.beta\.[56789]$|^1\.0\.rc\.[123456789]+/));
+
+/**
+  Prepares the Handlebars templating library for use inside Ember's view
+  system.
+
+  The `Ember.Handlebars` object is the standard Handlebars library, extended to
+  use Ember's `get()` method instead of direct property access, which allows
+  computed properties to be used inside templates.
+
+  To create an `Ember.Handlebars` template, call `Ember.Handlebars.compile()`.
+  This will return a function that can be used by `Ember.View` for rendering.
+
+  @class Handlebars
+  @namespace Ember
+*/
+Ember.Handlebars = objectCreate(Handlebars);
+
+/**
+@class helpers
+@namespace Ember.Handlebars
+*/
+Ember.Handlebars.helpers = objectCreate(Handlebars.helpers);
+
+/**
+  Override the the opcode compiler and JavaScript compiler for Handlebars.
+
+  @class Compiler
+  @namespace Ember.Handlebars
+  @private
+  @constructor
+*/
+Ember.Handlebars.Compiler = function() {};
+
+// Handlebars.Compiler doesn't exist in runtime-only
+if (Handlebars.Compiler) {
+  Ember.Handlebars.Compiler.prototype = objectCreate(Handlebars.Compiler.prototype);
+}
+
+Ember.Handlebars.Compiler.prototype.compiler = Ember.Handlebars.Compiler;
+
+/**
+  @class JavaScriptCompiler
+  @namespace Ember.Handlebars
+  @private
+  @constructor
+*/
+Ember.Handlebars.JavaScriptCompiler = function() {};
+
+// Handlebars.JavaScriptCompiler doesn't exist in runtime-only
+if (Handlebars.JavaScriptCompiler) {
+  Ember.Handlebars.JavaScriptCompiler.prototype = objectCreate(Handlebars.JavaScriptCompiler.prototype);
+  Ember.Handlebars.JavaScriptCompiler.prototype.compiler = Ember.Handlebars.JavaScriptCompiler;
+}
+
+
+Ember.Handlebars.JavaScriptCompiler.prototype.namespace = "Ember.Handlebars";
+
+
+Ember.Handlebars.JavaScriptCompiler.prototype.initializeBuffer = function() {
+  return "''";
+};
+
+/**
+  @private
+
+  Override the default buffer for Ember Handlebars. By default, Handlebars
+  creates an empty String at the beginning of each invocation and appends to
+  it. Ember's Handlebars overrides this to append to a single shared buffer.
+
+  @method appendToBuffer
+  @param string {String}
+*/
+Ember.Handlebars.JavaScriptCompiler.prototype.appendToBuffer = function(string) {
+  return "data.buffer.push("+string+");";
+};
+
+/**
+  @private
+
+  Rewrite simple mustaches from `{{foo}}` to `{{bind "foo"}}`. This means that
+  all simple mustaches in Ember's Handlebars will also set up an observer to
+  keep the DOM up to date when the underlying property changes.
+
+  @method mustache
+  @for Ember.Handlebars.Compiler
+  @param mustache
+*/
+Ember.Handlebars.Compiler.prototype.mustache = function(mustache) {
+  if (mustache.params.length || mustache.hash) {
+    return Handlebars.Compiler.prototype.mustache.call(this, mustache);
+  } else {
+    var id = new Handlebars.AST.IdNode(['_triageMustache']);
+
+    // Update the mustache node to include a hash value indicating whether the original node
+    // was escaped. This will allow us to properly escape values when the underlying value
+    // changes and we need to re-render the value.
+    if(!mustache.escaped) {
+      mustache.hash = mustache.hash || new Handlebars.AST.HashNode([]);
+      mustache.hash.pairs.push(["unescaped", new Handlebars.AST.StringNode("true")]);
+    }
+    mustache = new Handlebars.AST.MustacheNode([id].concat([mustache.id]), mustache.hash, !mustache.escaped);
+    return Handlebars.Compiler.prototype.mustache.call(this, mustache);
+  }
+};
+
+/**
+  Used for precompilation of Ember Handlebars templates. This will not be used
+  during normal app execution.
+
+  @method precompile
+  @for Ember.Handlebars
+  @static
+  @param {String} string The template to precompile
+*/
+Ember.Handlebars.precompile = function(string) {
+  var ast = Handlebars.parse(string);
+
+  var options = {
+    knownHelpers: {
+      action: true,
+      unbound: true,
+      bindAttr: true,
+      template: true,
+      view: true,
+      _triageMustache: true
+    },
+    data: true,
+    stringParams: true
+  };
+
+  var environment = new Ember.Handlebars.Compiler().compile(ast, options);
+  return new Ember.Handlebars.JavaScriptCompiler().compile(environment, options, undefined, true);
+};
+
+// We don't support this for Handlebars runtime-only
+if (Handlebars.compile) {
+  /**
+    The entry point for Ember Handlebars. This replaces the default
+    `Handlebars.compile` and turns on template-local data and String
+    parameters.
+
+    @method compile
+    @for Ember.Handlebars
+    @static
+    @param {String} string The template to compile
+    @return {Function}
+  */
+  Ember.Handlebars.compile = function(string) {
+    var ast = Handlebars.parse(string);
+    var options = { data: true, stringParams: true };
+    var environment = new Ember.Handlebars.Compiler().compile(ast, options);
+    var templateSpec = new Ember.Handlebars.JavaScriptCompiler().compile(environment, options, undefined, true);
+
+    return Handlebars.template(templateSpec);
+  };
+}
+
+
+})();
+
+
+exports.precompile = Ember.Handlebars.precompile;
+})()
