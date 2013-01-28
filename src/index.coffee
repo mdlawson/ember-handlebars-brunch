@@ -33,8 +33,3 @@ module.exports = class EmberHandlebarsCompiler
       error = err
     finally
       callback error, result
-
-  # include: [
-  #   sysPath.join __dirname, '..', 'vendor', 'handlebars-1.0.0.beta.6.js'
-  #   sysPath.join __dirname, '..', 'vendor', 'ember.js'
-  # ]
