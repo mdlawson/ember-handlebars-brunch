@@ -22,6 +22,7 @@ module.exports = class EmberHandlebarsCompiler
   compile: (data, path, callback) ->
     try
       name = if @root? then path.replace(@root, '') else path
+      name = name.substr 0, name.length - @extension.length - 1
       if @precompile is on
         content = compileHBS data.toString()
         result  = "\nEmber.TEMPLATES['#{name}'] = Ember.Handlebars.template(#{content});\n module.exports = '#{name}';"
@@ -32,3 +33,8 @@ module.exports = class EmberHandlebarsCompiler
       error = err
     finally
       callback error, result
+
+  # include: [
+  #   sysPath.join __dirname, '..', 'vendor', 'handlebars-1.0.0.beta.6.js'
+  #   sysPath.join __dirname, '..', 'vendor', 'ember.js'
+  # ]
