@@ -14,7 +14,6 @@ set the templates compiler in `config.coffee` set `precompile` to `true` if you 
       root: 'app/templates'
       defaultExtension: 'hbs'
       joinTo: 'javascripts/app.js' : /^app/
-      
 
 place your handlebars templates in the `app/templates/` directory and give them a `.hbs` extension
 
