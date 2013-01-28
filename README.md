@@ -11,6 +11,7 @@ set the templates compiler in `config.coffee` set `precompile` to `true` if you 
 
     templates:
       precompile: true  # default is false
+      root: 'app/templates'
       defaultExtension: 'hbs'
       joinTo: 'javascripts/app.js' : /^app/
       
@@ -20,9 +21,16 @@ place your handlebars templates in the `app/templates/` directory and give them 
 	app/
 	  templates/
 	    my_template.hbs
+      subdir/
+        another_template.hbs
 
 then simply `require` them in your views
 
 	App.MyView = Ember.View.extend({
-		templateName: require('app/template/my_template') // no extension
+		templateName: 'my_template' // no extension
 	});
+
+also accessible through `Ember.TEMPLATES`
+
+    var anotherTemplate = Ember.TEMPLATES['subdir/another_templates']
+
