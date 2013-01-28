@@ -6,22 +6,9 @@ module.exports = (->
   vm      = require 'vm'
   sysPath = require 'path'
 
-  handlebarsjsPath = sysPath.join __dirname, '..', 'vendor', 'handlebars-1.0.0.beta.6.js'
-  emberjsPath      = sysPath.join __dirname, '..', 'vendor', 'ember.js'
-
-  handlebarsjs  = fs.readFileSync handlebarsjsPath, 'utf8'
-  emberjs       = fs.readFileSync emberjsPath, 'utf8'
-
-  # dummy jQuery
-  jQuery = -> jQuery
-  jQuery.ready = -> jQuery
-  jQuery.inArray = -> jQuery
-  jQuery.jquery = "1.7.1";
-
-  # dummy DOM element
-  element =
-    firstChild: -> element
-    innerHTML: -> element
+  # Pull in the compiler
+  compilerjsPath = sysPath.join(__dirname, '..', 'vendor', 'ember-template-compiler.js')
+  compilerjs = fs.readFileSync(compilerjsPath, 'utf8')
 
   sandbox =
     # DOM
@@ -32,15 +19,15 @@ module.exports = (->
     # Console
     console: console
 
-    # jQuery
-    jQuery: jQuery
-    $: jQuery
-
     # handlebars template to compile
     template: null
 
     # compiled handlebars template
     templatejs: null
+
+    # container for exports, needed to support commonJS modules
+    exports:
+      precompile: null
 
   # window
   sandbox.window = sandbox
@@ -48,16 +35,15 @@ module.exports = (->
   # create a context for the vm using the sandbox data
   context = vm.createContext sandbox
 
-  # load ember and handlebars in the vm
-  vm.runInContext handlebarsjs, context, 'handlebars.js'
-  vm.runInContext emberjs, context, 'ember.js'
+  # load ember-template-compiler in the vm to compile templates
+  vm.runInContext compilerjs, context, 'compiler.js'
 
   return (templateData)->
 
     context.template = templateData
 
     # compile the handlebars template inside the vm context
-    vm.runInContext 'templatejs = Ember.Handlebars.precompile(template).toString();', context
+    vm.runInContext 'templatejs = exports.precompile(template).toString();', context
 
     context.templatejs;
 

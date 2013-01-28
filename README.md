@@ -1,7 +1,7 @@
 ## Ember Handlebars for Brunch
 
 This plugin adds [Ember Handlebars](http://emberjs.com/) template pre-compiling to
-[brunch](http://brunch.io).
+[brunch](http://brunch.io), utilizing the latest and greatest EmberJS build (compatible with the new ember v2 router).
 
 ## Usage
 
@@ -19,6 +19,7 @@ place your handlebars templates in the `app/templates/` directory and give them 
 
 	app/
 	  templates/
+      application.hbs
 	    my_template.hbs
       subdir/
         another_template.hbs
@@ -26,10 +27,9 @@ place your handlebars templates in the `app/templates/` directory and give them 
 then simply `require` them in your views
 
 	App.MyView = Ember.View.extend({
-		templateName: 'my_template' // no extension
+		templateName: 'my_template'
 	});
 
 also accessible through `Ember.TEMPLATES`
 
     var anotherTemplate = Ember.TEMPLATES['subdir/another_template'];
-
