@@ -31,5 +31,5 @@ then simply `require` them in your views
 
 also accessible through `Ember.TEMPLATES`
 
-    var anotherTemplate = Ember.TEMPLATES['subdir/another_templates']
+    var anotherTemplate = Ember.TEMPLATES['subdir/another_template'];
 
