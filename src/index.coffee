@@ -1,7 +1,7 @@
 
 sysPath     = require 'path'
-compileHBS  = require './ember-handlebars-compiler'
 fs          = require 'fs'
+compileHBS  = require './ember-handlebars-compiler'
 
 module.exports = class EmberHandlebarsCompiler
   brunchPlugin: yes
@@ -25,10 +25,10 @@ module.exports = class EmberHandlebarsCompiler
       name = name.substr 0, name.length - @extension.length - 1
       if @precompile is on
         content = compileHBS data.toString()
-        result  = "\nEmber.TEMPLATES['#{name}'] = Ember.Handlebars.template(#{content});\n module.exports = '#{name}';"
+        result  = "\nEmber.TEMPLATES['#{name}'] = Ember.Handlebars.template(#{content});\n module.exports = module.id;"
       else
         content = JSON.stringify data.toString()
-        result  = "\nEmber.TEMPLATES['#{name}'] = Ember.Handlebars.compile(#{content});\n module.exports = '#{name}';"
+        result  = "\nEmber.TEMPLATES['#{name}'] = Ember.Handlebars.compile(#{content});\n module.exports = module.id;"
     catch err
       error = err
     finally

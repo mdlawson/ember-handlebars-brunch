@@ -6,9 +6,13 @@ module.exports = (->
   vm      = require 'vm'
   sysPath = require 'path'
 
-  # Pull in the compiler
-  compilerjsPath = sysPath.join(__dirname, '..', 'vendor', 'ember-template-compiler.js')
-  compilerjs = fs.readFileSync(compilerjsPath, 'utf8')
+  compilerPath     = sysPath.join __dirname, '..', 'vendor', 'ember-template-compiler.js'
+  compilerjs    = fs.readFileSync compilerPath, 'utf8'
+
+  # dummy DOM element
+  element =
+    firstChild: -> element
+    innerHTML: -> element
 
   sandbox =
     # DOM
@@ -35,7 +39,7 @@ module.exports = (->
   # create a context for the vm using the sandbox data
   context = vm.createContext sandbox
 
-  # load ember-template-compiler in the vm to compile templates
+  # load ember and handlebars in the vm
   vm.runInContext compilerjs, context, 'compiler.js'
 
   return (templateData)->
@@ -46,5 +50,4 @@ module.exports = (->
     vm.runInContext 'templatejs = exports.precompile(template).toString();', context
 
     context.templatejs;
-
 )()
