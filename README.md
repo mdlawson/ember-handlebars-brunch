@@ -24,12 +24,16 @@ place your handlebars templates in the `app/templates/` directory and give them 
       subdir/
         another_template.hbs
 
-the template name will be the path without the root
+the template name will be the path without the `root`
 
 	App.MyView = Ember.View.extend({
 		templateName: 'my_template'
 	});
 
-also accessible through `Ember.TEMPLATES`
+Also accessible through `Ember.TEMPLATES`
 
     var anotherTemplate = Ember.TEMPLATES['subdir/another_template'];
+
+If you wish to `require` the template, you have to use the full path
+
+    require('templates/application');
