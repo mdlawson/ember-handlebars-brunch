@@ -25,10 +25,10 @@ module.exports = class EmberHandlebarsCompiler
       name = name.substr 0, name.length - @extension.length - 1
       if @precompile is on
         content = compileHBS data.toString()
-        result  = "\nEmber.TEMPLATES['#{name}'] = Ember.Handlebars.template(#{content});\n module.exports = module.id;"
+        result  = "module.exports = Ember.TEMPLATES['#{name}'] = Ember.Handlebars.template(#{content});"
       else
         content = JSON.stringify data.toString()
-        result  = "\nEmber.TEMPLATES['#{name}'] = Ember.Handlebars.compile(#{content});\n module.exports = module.id;"
+        result  = "module.exports = Ember.TEMPLATES['#{name}'] = Ember.Handlebars.compile(#{content});"
     catch err
       error = err
     finally
