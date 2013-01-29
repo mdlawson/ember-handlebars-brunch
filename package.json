@@ -1,14 +1,23 @@
 {
   "name": "ember-handlebars-brunch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Adds Ember Handlebars support to brunch for new Emberjs v2 Router",
   "author": {
-    "name": "Sai Wong + Ilia Choly + Steve Bartnesky"
+    "name": "Sai Wong"
   },
-  "homepage": "https://github.com/bartsqueezy/ember-handlebars-brunch",
+  "contributors": [
+    {
+      "name": "Ilia Choly",
+      "email": "ilia.choly@gmail.com"
+    },
+    {
+      "name": "Steve Bartnesky"
+    }
+  ],
+  "homepage": "https://github.com/icholy/ember-handlebars-brunch",
   "repository": {
     "type": "git",
-    "url": "git://github.com/bartsqueezy/ember-handlebars-brunch.git"
+    "url": "git://github.com/icholy/ember-handlebars-brunch.git"
   },
   "main": "./lib/index",
   "scripts": {
