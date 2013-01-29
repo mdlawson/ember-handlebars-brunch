@@ -16,8 +16,6 @@ module.exports = class EmberHandlebarsCompiler
     if @config.files.templates.root?
       @root = sysPath.normalize(@config.files.templates.root)
       @root += sysPath.sep if @root[@root.length - 1] isnt sysPath.sep
-      if not fs.existsSync @root
-        throw "EmberHandlebarsCompiler: templates.root = #{@root} does not exist";
     null
 
   compile: (data, path, callback) ->

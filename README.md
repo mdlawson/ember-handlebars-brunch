@@ -11,7 +11,7 @@ set the templates compiler in `config.coffee` set `precompile` to `true` if you 
 
     templates:
       precompile: true  # default is false
-      root: 'app/templates'
+      root: 'templates/'
       defaultExtension: 'hbs'
       joinTo: 'javascripts/app.js' : /^app/
 
