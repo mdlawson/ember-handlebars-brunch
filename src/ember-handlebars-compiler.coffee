@@ -39,7 +39,7 @@ module.exports = (->
   # create a context for the vm using the sandbox data
   context = vm.createContext sandbox
 
-  # load ember and handlebars in the vm
+  # load ember-template-compiler in the vm to compile templates
   vm.runInContext compilerjs, context, 'compiler.js'
 
   return (templateData)->
