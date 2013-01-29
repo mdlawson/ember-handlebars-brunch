@@ -14,21 +14,21 @@ module.exports = class EmberHandlebarsCompiler
     if @config.files.templates.precompile is on
       @precompile = on
     if @config.files.templates.root?
-      @root = sysPath.normalize(@config.files.templates.root) + sysPath.sep
+      @root = sysPath.normalize(@config.files.templates.root)
+      @root += sysPath.sep if @root[@root.length - 1] isnt sysPath.sep
       if not fs.existsSync @root
         throw "EmberHandlebarsCompiler: templates.root = #{@root} does not exist";
     null
 
   compile: (data, path, callback) ->
     try
-      name = if @root? then path.replace(@root, '') else path
-      name = name.substr 0, name.length - @extension.length - 1
+      tmplName = "Ember.TEMPLATES[module.id.replace('#{@root}','')]"
       if @precompile is on
         content = compileHBS data.toString()
-        result  = "module.exports = Ember.TEMPLATES['#{name}'] = Ember.Handlebars.template(#{content});"
+        result  = "module.exports = #{tmplName} = Ember.Handlebars.template(#{content});"
       else
         content = JSON.stringify data.toString()
-        result  = "module.exports = Ember.TEMPLATES['#{name}'] = Ember.Handlebars.compile(#{content});"
+        result  = "module.exports = #{tmplName} = Ember.Handlebars.compile(#{content});"
     catch err
       error = err
     finally
