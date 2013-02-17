@@ -1,4 +1,3 @@
-
 sysPath     = require 'path'
 fs          = require 'fs'
 compileHBS  = require './ember-handlebars-compiler'
@@ -16,8 +15,8 @@ module.exports = class EmberHandlebarsCompiler
   constructor: (@config) ->
     if @config.files.templates.precompile is on
       @precompile = on
-	if @config.files.templates.jade is true
-	  @jade = true
+  if @config.files.templates.jade is true
+    @jade = true
     if @config.files.templates.root?
       @root = sysPath.join 'app', @config.files.templates.root, sysPath.sep
     if @config.modules.wrapper is on
@@ -29,10 +28,10 @@ module.exports = class EmberHandlebarsCompiler
       tmplPath = path.replace @root, ''
       tmplPath = tmplPath.substr 0, tmplPath.length - sysPath.extname(tmplPath).length
       tmplName = "Ember.TEMPLATES['#{tmplPath}']"
-	  
-	  handlebars = data.toString()
-	  if @jade is true
-		handlebars = jade.compile(handlebars,{filename:path})()
+
+      handlebars = data.toString()
+      if @jade is true
+        handlebars = jade.compile(handlebars,{filename:path})()
       if @precompile is on
         content = compileHBS handlebars
       else
