@@ -34,9 +34,10 @@ module.exports = class EmberHandlebarsCompiler
         handlebars = jade.compile(handlebars,{filename:path})()
       if @precompile is on
         content = compileHBS handlebars
+        result = "#{@modulesPrefix}#{tmplName} = Ember.Handlebars.template(#{content});"
       else
         content = JSON.stringify handlebars
-      result = "#{@modulesPrefix}#{tmplName} = Ember.Handlebars.compile(#{content});"
+        result = "#{@modulesPrefix}#{tmplName} = Ember.Handlebars.compile(#{content});"
     catch err
       error = err
     finally
