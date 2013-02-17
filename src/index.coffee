@@ -15,8 +15,8 @@ module.exports = class EmberHandlebarsCompiler
   constructor: (@config) ->
     if @config.files.templates.precompile is on
       @precompile = on
-  if @config.files.templates.jade is true
-    @jade = true
+    if @config.files.templates.jade is true
+      @jade = true
     if @config.files.templates.root?
       @root = sysPath.join 'app', @config.files.templates.root, sysPath.sep
     if @config.modules.wrapper is on
